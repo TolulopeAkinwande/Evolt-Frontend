@@ -1,7 +1,7 @@
 export default function SignUp() {
     return (
         <>
-            <div className="w-full h-100 bg-green-600  min-h-screen  bg-gradient-to-r from-pink-100 to-blue-100 text-black flex justify-center items-center">
+            <div className="w-full h-100  min-h-screen  bg-gradient-to-br from-pink-100 via-white to-blue-100 text-black flex justify-center items-center">
                 <div className="w-[400px] h-[430px] bg-white text-black rounded-lg flex flex-col justify-around items-center p-4">
                     <div className="w-[100%] h-[50px] border">
                         <h1>Sign Up</h1>
