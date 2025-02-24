@@ -1,9 +1,12 @@
+import logo from "../assets/purple.jpeg"
+
 export default function SignUp() {
     return (
         <>
             <div className="w-full h-100  min-h-screen  bg-gradient-to-br from-pink-100 via-white to-purple-100 text-black flex justify-center items-center">
                 <div className="w-[400px] h-[430px] bg-white text-black rounded-lg flex flex-col justify-around items-center p-4">
-                    <div className="w-[100%] h-[50px] border">
+                    <div className="w-[100%] h-[70px]">
+                        <img src={logo} alt="Logo" className="w-[50px] h-[25px] object-cover rounded-md" />
                         <h1>Sign Up</h1>
                         <p className="text-[12px]">Enter your details below to create your account and get started.</p>
                     </div>
