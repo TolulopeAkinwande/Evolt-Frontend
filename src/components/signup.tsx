@@ -1,7 +1,7 @@
 export default function SignUp() {
     return (
         <>
-            <div className="w-full h-100  min-h-screen  bg-gradient-to-br from-pink-100 via-white to-blue-100 text-black flex justify-center items-center">
+            <div className="w-full h-100  min-h-screen  bg-gradient-to-br from-pink-100 via-white to-purple-100 text-black flex justify-center items-center">
                 <div className="w-[400px] h-[430px] bg-white text-black rounded-lg flex flex-col justify-around items-center p-4">
                     <div className="w-[100%] h-[50px] border">
                         <h1>Sign Up</h1>
@@ -25,9 +25,13 @@ export default function SignUp() {
                                 <label htmlFor=""></label>
                                 <input type="text" placeholder="Phonenumber" className="w-[100%] border border-gray-300 rounded-[5px]" />
                             </div>
-                            <div className="w-[100%] h-auto">
-                                <button></button>
-                                <button></button>
+                            <div className="w-full h-auto flex gap-4 p-4">
+                                <button className="w-[50%] px-6 py-2 bg-white text-black font-semibold rounded-lg shadow-md">
+                                    cancel
+                                </button>
+                                <button className="w-[50%] px-6 py-2 bg-purple-700 text-white font-semibold rounded-lg shadow-md ">
+                                    comfirm
+                                </button>
                             </div>
                         </div>
                     </div>
