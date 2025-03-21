@@ -1,88 +1,120 @@
-import logo from "../assets/purple.jpeg"
+import React from "react";
 
-export default function SignUp() {
-    return (
-        <>
-            <div className="w-full h-100  min-h-screen  bg-gradient-to-br from-pink-100 via-white to-purple-100 text-black flex justify-center items-center">
-                <div className="w-[400px] h-[430px] bg-white text-black rounded-lg flex flex-col justify-around items-center p-4">
-                    <div className="w-[100%]  h-[90px] flex justify-around flex-col">
-                        <img src={logo} alt="Logo" className="w-[50px] h-[25px] object-cover rounded-md" />
-                        <h1>Sign Up</h1>
-                        <p className="text-[12px]">Enter your details below to create your account and get started.</p>
-                    </div>
-                    <div className="w-full h-[300px] bg-white  flex justify-around items-center shadow-xl rounded-xl">
-                        <div className="w-[100%] h-[100%] flex flex-col justify-around items-center">
-                            <div className="w-[100%] h-auto">
-                                <input type="text" placeholder="Firstname" className="w-[100%] border border-gray-300 rounded-[5px]" />
-                            </div>
-                            <div className="w-[100%] h-auto">
-                                <input type="text" placeholder="Lastname" className="w-[100%] border border-gray-300 rounded-[5px]" />
-                            </div>
-                            <div className="w-[100%] h-auto">
-                                <input type="text" placeholder="Email" className="w-[100%] border border-gray-300 rounded-[5px]" />
-                            </div>
-                            <div className="w-[100%] h-auto ">
-                                <input type="text" placeholder="password" className="w-[100%] border border-gray-300 rounded-[5px]" />
-                            </div>
-                            <div className="w-[100%] h-auto">
-                                <label htmlFor=""></label>
-                                <input type="text" placeholder="Phonenumber" className="w-[100%] border border-gray-300 rounded-[5px]" />
-                            </div>
-                            <div className="w-full h-auto flex gap-4 p-4">
-                                <button className="w-[50%] px-6 py-2 bg-purple-700 text-white font-semibold rounded-lg shadow-md ">
-                                    comfirm
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+export default function SignUpPage() {
+  return (
+    <div className="bg-white h-screen flex items-center justify-center">
+      <div className="container mx-auto max-w-5xl shadow-lg  overflow-hidden h-full">
+        <div className="flex flex-col md:flex-row h-full">
+          {/* Left Section */}
+          <div className="md:w-1/2 bg-blue-700 text-white p-8 flex flex-col justify-center h-full">
+            <div className="max-w-md mx-auto">
+              <h1 className="text-4xl font-bold mb-4">
+                Join Our Community
+              </h1>
+              <p className="mb-8 text-lg">
+                Sign up to start your journey with us.
+              </p>
+              <blockquote className="mt-auto text-sm italic border-l-4 border-white pl-4">
+                “The best way to predict the future is to create it.”
+                <br />
+                <span className="font-semibold not-italic">- Peter Drucker</span>
+              </blockquote>
             </div>
-        </>
-    );
-};
+          </div>
 
-// import { useState } from "react";
-// import { motion } from "framer-motion";
+          {/* Right Section */}
+          <div className="md:w-1/2  bg-white p-8 flex flex-col justify-center h-full">
+            <div className="max-w-sm mx-auto h-1/2 h-[600px]">
+              <h2 className="text-2xl font-semibold mb-4">Create Your Account</h2>
 
-// export default function SignupPage() {
-//   const [form, setForm] = useState({
-//     firstName: "",
-//     lastName: "",
-//     email: "",
-//     password: "",
-//     phone: "",
-//   });
+              <form>
+                <div className="mb-2">
+                  <label htmlFor="firstName" className="block text-sm font-medium mb-1">
+                    First Name
+                  </label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Enter your first name"
+                    required
+                  />
+                </div>
 
-//   const handleChange = (e: { target: { name: any; value: any; }; }) => {
-//     setForm({ ...form, [e.target.name]: e.target.value });
-//   };
+                <div className="mb-2">
+                  <label htmlFor="lastName" className="block text-sm font-medium mb-1">
+                    Last Name
+                  </label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Enter your last name"
+                    required
+                  />
+                </div>
 
-//   const handleSubmit = (e: { preventDefault: () => void; }) => {
-//     e.preventDefault();
-//     console.log("Form submitted", form);
-//   };
+                <div className="mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium mb-1">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
 
-//   return (
-//     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-//       <motion.div 
-//         initial={{ opacity: 0, y: 20 }} 
-//         animate={{ opacity: 1, y: 0 }} 
-//         transition={{ duration: 0.5 }}
-//       >
-//         <div className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
-//           <h2 className="text-2xl font-bold text-center mb-4">Create an Account</h2>
-//           <div>
-//             <form onSubmit={handleSubmit} className="space-y-4">
-//               <input type="text" name="firstName" placeholder="First Name" value={form.firstName} onChange={handleChange} required className="w-full p-2 border rounded" />
-//               <input type="text" name="lastName" placeholder="Last Name" value={form.lastName} onChange={handleChange} required className="w-full p-2 border rounded" />
-//               <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required className="w-full p-2 border rounded" />
-//               <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required className="w-full p-2 border rounded" />
-//               <input type="tel" name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} required className="w-full p-2 border rounded" />
-//               <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded">Sign Up</button>
-//             </form>
-//           </div>
-//         </div>
-//       </motion.div>
-//     </div>
-//   );
-// }
+                <div className="mb-2">
+                  <label htmlFor="password" className="block text-sm font-medium mb-1">
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    type="password"
+                    className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+
+                <div className="mb-2">
+                  <label htmlFor="phone" className="block text-sm font-medium mb-1">
+                    Phone Number
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </div>
+
+                <p className="text-xs text-gray-500 mb-2">
+                  By signing up, you agree to our{' '}
+                  <a href="#" className="text-blue-600 hover:underline">
+                    Terms & Conditions
+                  </a>{' '}
+                  and{' '}
+                  <a href="#" className="text-blue-600 hover:underline">
+                    Privacy Policy
+                  </a>.
+                </p>
+
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                >
+                  Sign Up
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
