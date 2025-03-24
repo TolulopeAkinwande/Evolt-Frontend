@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router";
 
 export default function SignUpPage() {
@@ -101,7 +101,7 @@ export default function SignUpPage() {
                                     </a>{' '}
                                     and{' '}
                                     <Link to="/login" className="text-blue-600 hover:underline">
-                                        Sign up
+                                        Log in
                                     </Link>.
                                 </p>
 
