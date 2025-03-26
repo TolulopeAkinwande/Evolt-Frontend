@@ -22,6 +22,9 @@ export interface SignupResponse {
     // Add other relevant user fields as needed
   };
 }
-// export interface signupResponse {
-
-// }
+export interface Medication {
+  id: number;
+  name: string;
+  price: number;
+  image?: string;
+}

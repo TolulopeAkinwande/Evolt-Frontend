@@ -14,9 +14,12 @@ export default function LandingPage() {
       <nav className="bg-blue-700 text-white py-4 px-6">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">Evtol</h1>
-          <div>
-            <a href="/login" className="mx-4 hover:underline">Login</a>
-            <a href="/signup" className="bg-white text-blue-700 px-4 py-1 rounded hover:bg-blue-100">Sign Up</a>
+          <div className="flex">
+            <a href="/signup" className="text-white-700 flex  px-4 py-1 rounded hover:bg-blue-100">Product</a>
+            <div>
+              <a href="/login" className="mx-4 hover:underline">Login</a>
+              <a href="/signup" className="bg-white text-blue-700 px-4 py-1 rounded hover:bg-blue-100">Sign Up</a>
+            </div>
           </div>
         </div>
       </nav>
