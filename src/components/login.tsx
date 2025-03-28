@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../utils/api";
 import { LoginResponse } from "../lib/types";
 
@@ -8,6 +8,9 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Initialize the useNavigate hook
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,16 +21,16 @@ export default function LoginPage() {
     const payload = { email, password };
 
     try {
-      // Replace this URL with your actual backend endpoint
-      console.log(payload);
+      console.log("Login payload:", payload);
       const response = await api.makeRequest<LoginResponse>({
-        url: '/api/v1/auth/login',
-        method: 'POST',
+        url: "/api/v1/auth/login",
+        method: "POST",
         data: payload,
       });
 
-      console.log(response?.accessToken);
-      
+      console.log("Login successful. Access Token:", response?.accessToken);
+      // Redirect to the products page upon successful login
+      navigate("/products");
     } catch (error: any) {
       console.error("Login error:", error);
       setErrorMsg(error.message || "An unexpected error occurred.");
@@ -41,8 +44,11 @@ export default function LoginPage() {
       <div className="container mx-auto max-w-5xl shadow-lg overflow-hidden h-full">
         <div className="flex flex-col md:flex-row h-full">
           {/* Left Section */}
-          <div className="md:w-1/2 bg-blue-700 text-white p-8 flex flex-col justify-center h-full">
-            <div className="max-w-md mx-auto">
+          <div
+            className="md:w-1/2 text-white p-8 flex flex-col justify-center h-full bg-cover bg-center"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1706755347832-0a8c8caa7647?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGltYWdlcyUyMG9mJTIwc2lnbnVwfGVufDB8fDB8fHww')" }}
+          >
+            <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-md mx-auto">
               <h1 className="text-4xl font-bold mb-4">Welcome Back</h1>
               <p className="mb-8 text-lg">Log in to continue your journey with us.</p>
               <blockquote className="mt-auto text-sm italic border-l-4 border-white pl-4">
@@ -60,7 +66,10 @@ export default function LoginPage() {
 
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm font-medium mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium mb-1"
+                  >
                     Email
                   </label>
                   <input
@@ -75,7 +84,10 @@ export default function LoginPage() {
                 </div>
 
                 <div className="mb-6">
-                  <label htmlFor="password" className="block text-sm font-medium mb-1">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium mb-1"
+                  >
                     Password
                   </label>
                   <input
@@ -104,7 +116,7 @@ export default function LoginPage() {
 
               <p className="text-xs text-gray-500 mt-4">
                 Don't have an account?{" "}
-                <Link to="/signup" className="text-blue-600 hover:underline">
+                <Link to="/sign-up" className="text-blue-600 hover:underline">
                   Sign up
                 </Link>
               </p>

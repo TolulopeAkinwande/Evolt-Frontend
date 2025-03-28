@@ -3,28 +3,28 @@ import React from "react";
 import evtolImg from "../assets/evtol.jpeg";
 import image1 from "../assets/rebrand.jpg";
 import image2 from "../assets/people.jpg";
-// import image3 from "../assets/drugs.jpg";
+import image3 from "../assets/quality.jpeg"
+import image4 from "../assets/istockphoto-copy.webp"
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 export default function LandingPage() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      {/* Navbar */}
       <nav className="bg-blue-700 text-white py-4 px-6">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">Evtol</h1>
-          <div className="flex">
-            <a href="/signup" className="text-white-700 flex  px-4 py-1 rounded hover:bg-blue-100">Product</a>
+          <div className="flex items-center gap-4 ">
+            <a href="products" className="text-white-700 flex">Product</a>
             <div>
+              <a href="sign-up" className="bg-white text-blue-700 px-4 py-1 rounded hover:bg-blue-100">Sign Up</a>
               <a href="/login" className="mx-4 hover:underline">Login</a>
-              <a href="/signup" className="bg-white text-blue-700 px-4 py-1 rounded hover:bg-blue-100">Sign Up</a>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
       <header className="container mx-auto flex flex-col md:flex-row items-center px-10 py-16 gap-10">
         {/* Text Content */}
         <div className="md:w-1/2 flex flex-col justify-center">
@@ -41,10 +41,10 @@ export default function LandingPage() {
         <div className="md:w-1/2">
           <Carousel
             autoPlay
-            interval={1000}
+            interval={3000}
             infiniteLoop
             showThumbs={false}
-            showStatus={true}
+            showStatus={false}
             stopOnHover={true}
             swipeable={false}
           >
@@ -54,9 +54,9 @@ export default function LandingPage() {
             <div>
               <img src={image2} alt="Description for image 2" className="w-full h-auto" />
             </div>
-            {/* <div>
-              <img src={image3} alt="Description for image 3" className="w-full h-auto" />
-            </div> */}
+            <div>
+              <img src={image4} alt="Description for image 3" className="w-full h-auto" />
+            </div>
           </Carousel>
         </div>
       </header>
@@ -65,7 +65,7 @@ export default function LandingPage() {
       <section className="container mx-auto px-10 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="text-center">
           <img
-            src="https://via.placeholder.com/100"
+            src={image3}
             alt="Quality Products"
             className="mx-auto mb-4"
           />
@@ -83,7 +83,7 @@ export default function LandingPage() {
         </div>
         <div className="text-center">
           <img
-            src="https://via.placeholder.com/100"
+            src="https://media.istockphoto.com/id/1477483635/photo/adult-man-paying-with-credit-card-at-cafe-close-up-of-hands-with-credit-card-and-credit-card.webp?a=1&b=1&s=612x612&w=0&k=20&c=M5RIaRa1wdxU5N6dV2nn2bGRJM949wLywv08jYWJh2s="
             alt="Secure Payment"
             className="mx-auto mb-4"
           />

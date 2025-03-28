@@ -1,7 +1,5 @@
-
-
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../utils/api";
 
 export default function SignUpPage() {
@@ -12,6 +10,9 @@ export default function SignUpPage() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    // Initialize navigate hook
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -28,6 +29,8 @@ export default function SignUpPage() {
             });
 
             console.log("Signup successful", response);
+            // Redirect to products page after successful signup
+            navigate("/products");
         } catch (error: any) {
             console.error("Signup error:", error);
             setErrorMsg(error.message || "An unexpected error occurred.");
@@ -41,8 +44,13 @@ export default function SignUpPage() {
             <div className="container mx-auto max-w-5xl shadow-lg rounded-lg overflow-hidden h-full">
                 <div className="flex flex-col md:flex-row h-full">
                     {/* Left Section */}
-                    <div className="md:w-1/2 bg-blue-700 text-white p-8 flex flex-col justify-center h-full">
-                        <div className="max-w-md mx-auto">
+
+                    {/* Left Section */}
+                    <div
+                        className="md:w-1/2 bg-blue-700 text-white p-8 flex flex-col justify-center h-full bg-cover bg-center"
+                        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1706755347832-0a8c8caa7647?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGltYWdlcyUyMG9mJTIwc2lnbnVwfGVufDB8fDB8fHww')" }}
+                    >
+                        <div className="max-w-md mx-auto bg-black bg-opacity-50 p-6 rounded-lg">
                             <h1 className="text-4xl font-bold mb-4">
                                 Join Our Community
                             </h1>
@@ -56,6 +64,7 @@ export default function SignUpPage() {
                             </blockquote>
                         </div>
                     </div>
+
 
                     {/* Right Section */}
                     <div className="md:w-1/2 bg-white p-8 flex flex-col justify-center h-full">

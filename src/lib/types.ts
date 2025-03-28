@@ -28,3 +28,35 @@ export interface Medication {
   price: number;
   image?: string;
 }
+
+export interface Products {
+  name: string;
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  price: number;
+  quantity: number;
+  weight: number;
+  code: string;
+  image: string;
+}
+export interface ProductsByid {
+  name: string;
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  price: number;
+  quantity: number;
+  weight: number;
+  code: string;
+  image: string;
+}
+interface CartItem extends Products {
+  cartQuantity: number;
+}
+interface Order {
+  id: string;
+  date: string; // You might convert this to a Date if needed
+  total: number;
+  items: { name: string; quantity: number }[];
+}
