@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Products } from "./lib/types";
 import { useCart } from "./cartContext";
 import { ArrowLeft, Plus, Minus } from "lucide-react"; // Import icons
+
+function Navbar() {
+    return (
+        <nav className="bg-green-800 p-4 w-full">
+            <div className="flex justify-between items-center px-10">
+                <h1 className="text-2xl font-bold text-white">MyStore</h1>
+                <div className="flex items-center gap-4">
+                    <Link to="/" className="text-white hover:underline">Home</Link>
+                    <Link to="/products" className="text-white hover:underline">Products</Link>
+                </div>
+            </div>
+        </nav>
+    );
+}
 
 export default function ProductPage() {
     const { id } = useParams<{ id: string }>();
@@ -11,6 +25,8 @@ export default function ProductPage() {
     const [product, setProduct] = useState<Products | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string>("");
+    const [successMessage, setSuccessMessage] = useState("");
+
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -35,61 +51,86 @@ export default function ProductPage() {
     const cartQuantity = cartItems[product.id] || 0;
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-            <div className="bg-white rounded-lg shadow-lg max-w-4xl flex overflow-hidden relative">
-
-                {/* Back Icon Button */}
-                <button
-                    onClick={() => navigate("/products")}
-                    className="absolute top-4 left-4 bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition"
-                >
-                    <ArrowLeft className="w-6 h-6 text-gray-700" />
-                </button>
-
-                {/* Left: Product Details */}
-                <div className="w-1/2 p-6 flex flex-col justify-center bg-white">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">{product.name}</h2>
-                    <ul className="text-gray-600 mb-4">
-                        <li className="flex items-center gap-2"><span className="text-blue-500">✔</span> Quantity Available: {product.quantity}</li>
-                        <li className="flex items-center gap-2"><span className="text-blue-500">✔</span> Weight: {product.weight}</li>
-                        <li className="flex items-center gap-2"><span className="text-blue-500">✔</span> Code: {product.code}</li>
-                    </ul>
-                    <p className="text-3xl font-bold text-blue-600 mb-4">${product.price}</p>
-                    <button
-                        onClick={() => navigate("/cart")}
-                        className="mt-4 bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-pink-500 transition"
-                    >
-                        add to Cart
-                    </button>
+        <div className="min-h-screen big-gray-100">
+            <Navbar />
+            {/* Success Message */}
+            {successMessage && (
+                <div className="w-full bg-green-100 text-green-800 py-2 text-center">
+                    {successMessage}
                 </div>
+            )}
+            <div className="flex flex-col gap-10 justify-center  items-center  p-4">
+                <div className="bg-white rounded-lg shadow-lg max-w-4xl flex overflow-hidden relative">
+                    {/* Back Icon Button */}
+                    <button
+                        onClick={() => navigate("/products")}
+                        className="absolute top-4 left-4 bg-green-600 p-2 rounded-full hover:bg-gray-300 transition"
+                    >
+                        <ArrowLeft className="w-6 h-6 text-white" />
+                    </button>
 
-
-                {/* Right: Image + Add to Cart Button */}
-                <div className="w-1/2 bg-whit-500 flex flex-col justify-center items-center pb-25 ">
-                    <img className="object-contain max-h-96 mb-4" src={product.image} alt={product.name} />
-
-                    {/* Quantity Controls */}
-                    <div className="flex items-center gap-4">
+                    {/* Left: Product Details */}
+                    <div className="w-1/2 p-6 flex flex-col justify-center bg-green-800">
+                        <h2 className="text-3xl font-bold text-white mb-4">{product.name}</h2>
+                        <ul className="text-white mb-4">
+                            <li className="flex items-center gap-2"><span className="text-blue-500">✔</span> Quantity Available: {product.quantity}</li>
+                            <li className="flex items-center gap-2"><span className="text-blue-500">✔</span> Weight: {product.weight}</li>
+                            <li className="flex items-center gap-2"><span className="text-blue-500">✔</span> Code: {product.code}</li>
+                        </ul>
+                        <p className="text-3xl font-bold text-green-800 mb-4">${product.price}</p>
                         <button
-                            onClick={() => removeFromCart(String(product.id))}
-                            disabled={cartQuantity === 0}
-                            className={`p-2 rounded-full ${cartQuantity > 0 ? "bg-red-500 hover:bg-red-600" : "bg-gray-300"} text-white transition`}
-                        >
-                            <Minus className="w-5 h-5" />
-                        </button>
-
-                        <span className="text-xl font-bold">{cartQuantity}</span>
-
-                        <button
-                            onClick={() => addToCart(product)}
+                            onClick={() => {
+                                addToCart(product);
+                                setSuccessMessage("Product added to cart successfully");
+                                setTimeout(() => setSuccessMessage(""), 3000);
+                            }}
                             disabled={cartQuantity >= product.quantity}
-                            className={`p-2 rounded-full ${cartQuantity < product.quantity ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-300"} text-white transition`}
+                            className={`p-2 rounded-full ${cartQuantity < product.quantity ? "bg-green-600 hover:bg-green-500" : "bg-gray-300"} text-white transition`}
                         >
-                            <Plus className="w-5 h-5" />
+                            add to Cart
                         </button>
+                    </div>
+
+
+                    {/* Right: Image + Add to Cart Button */}
+                    <div className="w-1/2 bg-whit-500 flex flex-col justify-center items-center pb-2 ">
+                        <img className="object-contain max-h-96 mb-4" src={product.image} alt={product.name} />
+
+                        {/* Quantity Controls */}
+                        <div className="flex items-center gap-4">
+                            <button
+                                onClick={() => removeFromCart(String(product.id))}
+                                disabled={cartQuantity === 0}
+                                className={`p-2 rounded-full ${cartQuantity > 0 ? "bg-red-500 hover:bg-red-600" : "bg-gray-300"} text-white transition`}
+                            >
+                                <Minus className="w-5 h-5" />
+                            </button>
+
+                            <span className="text-xl font-bold">{cartQuantity}</span>
+
+                            {/* <button
+                                onClick={() => addToCart(product)}
+                                disabled={cartQuantity >= product.quantity}
+                                className={`p-2 rounded-full ${cartQuantity < product.quantity ? "bg-green-800 hover:bg-blue-700" : "bg-gray-300"} text-white transition`}
+                            >
+                                <Plus className="w-5 h-5" />
+                            </button> */}
+                            <button
+                                onClick={() => {
+                                    addToCart(product);
+                                    setSuccessMessage("Product added to cart successfully");
+                                    setTimeout(() => setSuccessMessage(""), 3000);
+                                }}
+                                disabled={cartQuantity >= product.quantity}
+                                className={`p-2 rounded-full ${cartQuantity < product.quantity ? "bg-green-800 hover:bg-blue-700" : "bg-gray-300"} text-white transition`}
+                            >
+                                <Plus className="w-5 h-5" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }

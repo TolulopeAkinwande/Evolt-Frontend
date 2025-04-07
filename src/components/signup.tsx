@@ -69,7 +69,7 @@ export default function SignUpPage() {
                     {/* Right Section */}
                     <div className="md:w-1/2 bg-white p-8 flex flex-col justify-center h-full">
                         <div className="max-w-sm mx-auto h-[600px]">
-                            <h2 className="text-2xl font-semibold mb-4">Create Your Account</h2>
+                            <h2 className="text-2xl font-semibold text-green-900 mb-4">Create Your Account</h2>
 
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-2">
@@ -157,7 +157,7 @@ export default function SignUpPage() {
                                         Terms & Conditions
                                     </a>{" "}
                                     and{" "}
-                                    <Link to="/login" className="text-blue-600 hover:underline">
+                                    <Link to="/login" className="text-green-800 hover:underline">
                                         Log in
                                     </Link>.
                                 </p>
@@ -165,7 +165,7 @@ export default function SignUpPage() {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                                    className="w-full bg-green-800 text-white py-2 rounded hover:bg-blue-700 transition"
                                 >
                                     {isLoading ? "Signing Up..." : "Sign Up"}
                                 </button>
