@@ -11,15 +11,15 @@ export default function CartPage() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-            <div className="bg-white rounded-lg shadow-lg max-w-4xl w-full p-6 relative">
+            <div className="bg-green-800 rounded-lg shadow-lg max-w-4xl w-full p-6 relative">
                 <button
                     onClick={() => window.history.back()}
-                    className="absolute top-4 left-4 bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition"
+                    className="absolute top-4 left-4 bg-green-800 p-2 rounded-full hover:bg-gray-300 transition"
                 >
-                    <ArrowLeft className="w-6 h-6 text-gray-700" />
+                    <ArrowLeft className="w-6 h-6 text-white" />
                 </button>
                 
-                <h2 className="text-3xl font-bold text-blue-800 mb-6 text-center">Shopping Cart</h2>
+                <h2 className="text-3xl font-bold text-white mb-6 text-center">Shopping Cart</h2>
                 
                 {cart.length === 0 ? (
                     <p className="text-center text-gray-600">Your cart is empty.</p>
@@ -30,7 +30,7 @@ export default function CartPage() {
                                 <div className="flex items-center gap-4">
                                     <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
                                     <div>
-                                        <h3 className="text-lg font-semibold text-blue-800">{item.name}</h3>
+                                        <h3 className="text-lg font-semibold text-white">{item.name}</h3>
                                         <p className="text-gray-600">
                                             ${item.price.toFixed(2)} × {item.quantity || 1}
                                         </p>
@@ -49,7 +49,7 @@ export default function CartPage() {
                         ))}
 
                         {/* Total Price Section */}
-                        <div className="text-right font-semibold text-xl text-blue-800 mt-4">
+                        <div className="text-right font-semibold text-xl text-white mt-4">
                             Total: ${totalPrice.toFixed(2)}
                         </div>
                     </div>
@@ -57,7 +57,7 @@ export default function CartPage() {
                 
                 {cart.length > 0 && (
                     <div className="mt-6 text-center">
-                        <Link to="/checkout" className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                        <Link to="/checkout" className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-500 transition">
                             Proceed to Checkout
                         </Link>
                     </div>

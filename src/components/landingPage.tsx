@@ -19,7 +19,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4 ">
             <a href="products" className="text-white-700 flex">Product</a>
             <div>
-              <a href="sign-up" className="bg-white text-green-800 px-4 py-1 rounded hover:bg-blue-100">Sign Up</a>
+              <a href="sign-up" className="bg-white text-green-800 px-4 py-1 rounded hover:bg-green-100">Sign Up</a>
               <a href="/login" className="mx-4 hover:underline">Login</a>
             </div>
           </div>

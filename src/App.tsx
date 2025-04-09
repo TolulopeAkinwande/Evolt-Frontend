@@ -8,6 +8,8 @@ import ProductList from './components/productsList';
 import { CartProvider } from './cartContext';
 import CartPage from './components/cartPage';
 import OrderHistory from './components/order-history';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 function App() {
   return (

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Products } from "./lib/types";
 import { useCart } from "./cartContext";
-import { ArrowLeft, Plus, Minus } from "lucide-react"; // Import icons
+import { ArrowLeft, Plus, Minus, ShoppingCart } from "lucide-react"; // Import icons
 
 function Navbar() {
+    const { cartItems } = useCart();
+    const totalQuantity = Object.values(cartItems).reduce((sum, qty) => sum = qty, 0);
     return (
         <nav className="bg-green-800 p-4 w-full">
             <div className="flex justify-between items-center px-10">
@@ -12,6 +14,14 @@ function Navbar() {
                 <div className="flex items-center gap-4">
                     <Link to="/" className="text-white hover:underline">Home</Link>
                     <Link to="/products" className="text-white hover:underline">Products</Link>
+                    <Link to="/cart" className="relative text-white hover:underline flex items-center">
+                        <ShoppingCart size={24} />
+                       {totalQuantity > 0 && (
+                        <span className="absolute -top-2 -right-2 text-red-800 rounded-full text-xm font-bold w-5 h-5 flex items-center justify-end">
+                            {totalQuantity}
+                        </span>
+                       )}
+                    </Link>
                 </div>
             </div>
         </nav>
@@ -85,7 +95,7 @@ export default function ProductPage() {
                                 setTimeout(() => setSuccessMessage(""), 3000);
                             }}
                             disabled={cartQuantity >= product.quantity}
-                            className={`p-2 rounded-full ${cartQuantity < product.quantity ? "bg-green-600 hover:bg-green-500" : "bg-gray-300"} text-white transition`}
+                            className={`p-2 rounded-full ${cartQuantity < product.quantity ? "bg-green-600 hover:bg-green-700" : "bg-gray-300"} text-white transition`}
                         >
                             add to Cart
                         </button>
@@ -108,19 +118,8 @@ export default function ProductPage() {
 
                             <span className="text-xl font-bold">{cartQuantity}</span>
 
-                            {/* <button
-                                onClick={() => addToCart(product)}
-                                disabled={cartQuantity >= product.quantity}
-                                className={`p-2 rounded-full ${cartQuantity < product.quantity ? "bg-green-800 hover:bg-blue-700" : "bg-gray-300"} text-white transition`}
-                            >
-                                <Plus className="w-5 h-5" />
-                            </button> */}
                             <button
-                                onClick={() => {
-                                    addToCart(product);
-                                    setSuccessMessage("Product added to cart successfully");
-                                    setTimeout(() => setSuccessMessage(""), 3000);
-                                }}
+                                onClick={() => addToCart(product)}
                                 disabled={cartQuantity >= product.quantity}
                                 className={`p-2 rounded-full ${cartQuantity < product.quantity ? "bg-green-800 hover:bg-blue-700" : "bg-gray-300"} text-white transition`}
                             >
